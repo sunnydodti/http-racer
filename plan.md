@@ -4,7 +4,7 @@
 - Hono
 - Express
 
-## Api specivications
+## Api specifications
 
 ## Types
 
