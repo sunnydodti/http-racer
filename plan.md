@@ -25,3 +25,8 @@ Stress Test
 
 - SQLite
 - user table - empty
+
+
+## HONO API
+- Node
+- SQLite via libsql
