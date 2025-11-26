@@ -2,8 +2,10 @@ import { serve } from '@hono/node-server'
 import { drizzle } from 'drizzle-orm/libsql';
 import { createClient } from '@libsql/client';
 import { Hono } from 'hono'
-import { usersTable } from './db/schema.js';
+import { usersTable, insertUserSchema } from './db/schema.js';
 import 'dotenv/config';
+import { zValidator } from '@hono/zod-validator';
+
 
 const client = createClient({ url: process.env.DB_FILE_NAME! });
 const db = drizzle(client);
@@ -16,16 +18,9 @@ app.get('/users', async (c) => {
   return c.json(users);
 })
 
-app.post('/users', async (c) => {
-  const body = await c.req.json();
-  const {name, age, email} = body;
-  const user: typeof usersTable.$inferInsert = {
-    name: name.toString(),
-    age: Number(age.toString()),
-    email: email.toString()
-  }
+app.post('/users', zValidator('json', insertUserSchema), async (c) => {
+  const user = c.req.valid('json');
   const users = await db.insert(usersTable).values(user).returning();
-  // const users = await db.select().from(usersTable);
   return c.json(users);
 })
 
