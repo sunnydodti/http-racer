@@ -8,10 +8,13 @@
   },
   "dependencies": {
     "@hono/node-server": "^1.19.6",
+    "@hono/zod-validator": "^0.7.5",
     "@libsql/client": "^0.15.15",
     "dotenv": "^17.2.3",
     "drizzle-orm": "^0.44.7",
-    "hono": "^4.10.6"
+    "drizzle-zod": "^0.8.3",
+    "hono": "^4.10.6",
+    "zod": "^4.1.13"
   },
   "devDependencies": {
     "@types/node": "^20.11.17",
