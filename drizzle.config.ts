@@ -4,7 +4,7 @@ schema:"./src/db/schema.ts",
 out:"./drizzle",
 dialect: "sqlite",    
 dbCredentials:{
-    url:"./src/db/database.db"
+    url:"./db/database.db"
 }
 
 })
